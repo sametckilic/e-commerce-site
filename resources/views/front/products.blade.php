@@ -4,6 +4,8 @@
 
 <!-- Page Content -->
 <!-- Items Starts Here -->
+
+
 <div class="featured-page">
     <div class="container">
         <div class="row">
@@ -23,12 +25,12 @@
 
         @foreach ($products as $product)
             <div class="item col-md-4">
-                <a href="{{ route('single', $product->id) }}">
+                <a href="{{route('single',$product->id)}}">
                     <div class="featured-item">
                         <input type="hidden" class="productID" value={{ $product->id }}>
                         <img src="{{ asset('images') . '/' . $product->coverPhoto }}" alt=""><br><br>
                         <h4 style="display:inline;">{{ $product->name }}</h4> <button type="button"
-                            class="btn btn-primary me-3 addToCart float-start"
+                            veri={{ $product->id }} class="btn btn-primary me-3 addToCart float-start"
                             style="margin-left: 70px;margin-top: 25px;">Add to Cart <i
                                 class="fas fa-shopping-bag"></i><input type="hidden" class="productID"
                                 value={{ $product->id }}></button>
@@ -65,15 +67,20 @@
                 },
                 success: function(response) {
                     alert(response.status);
-                }
-            });
-            $.ajax({
-                method: 'GET',
-                url: '{{route('getData')}}',
-                success: function(response) {
+                    var id = (response.newItem[0].id);
+                    var photo = (response.newItem[0].coverPhoto);
+                    var name = (response.newItem[0].name);
+                    var price = (response.newItem[0].price);
+                    console.log(id, photo, price, name)
 
+                    $('.newItem').append('<a class="dropdown-item" href=/products/' + id +
+                        '><div class = "container"><img src="http://localhost:8000/images/' + photo +
+                        '" alt="" width="40">' + name +
+                        '</div>	&nbsp  Quantity: 1  	&nbsp Price:    $' + (price * 1) +
+                        ' </a>');
                 }
             });
+
         });
     });
 </script>

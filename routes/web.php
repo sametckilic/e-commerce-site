@@ -33,7 +33,7 @@ Route::get('/cart',[CartController::class,'showCart'])->name('showCart');
 Route::post('/add-to-cart',[CartController::class,'addToCart'])->name('addToCart');
 Route::post('/cart/delete',[CartController::class,'deleteCart'])->name('deleteCart');
 Route::post('cart/order',[CartController::class,'order'])->name('order');
-Route::get('/cart/getData',[CartController::class,'getData'])->name('getData');
+
 
 
 
@@ -49,10 +49,14 @@ Route::prefix('admin')->middleware('isAdmin')->group(function(){
     Route::get('/contacts',[AdminController::class,'showContacts'])->name('adminContacts');
     Route::get('/about',[AdminController::class,'showAbout'])->name('adminAbout');
     Route::put('/about/update',[AdminController::class,'updateAbout'])->name('updateAbout');
+    Route::get('/products/edit/{id}',[AdminController::class,'editProduct'])->name('editProduct');
+    Route::put('products/update',[AdminController::class,'updateProducts'])->name('updateProduct');
     Route::get('/products',[AdminController::class,'showProducts'])->name('showProducts');
     Route::get('/products/create',[AdminController::class,'showCreateProducts'])->name('showCreateProducts');
     Route::post('/products/store',[AdminController::class,'storeProducts'])->name('storeProducts');
-
+    Route::get('/products/delete/{id}',[AdminController::class,'deleteProduct'])->name('deleteProduct');
+    Route::get('/orders',[AdminController::class,'showOrders'])->name('showOrders');
+    Route::get('/orders/{orderNumber}',[AdminController::class,'showOrderITems'])->name('showOrderItems');
 });
 
 

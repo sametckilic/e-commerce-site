@@ -20,17 +20,18 @@ class CartController extends Controller
     public function addToCart(Request $request)
     {
 
-        if (!cartstable::where('productID', $request->input('productID'))->exists()) {
+       // if (!cartstable::where('productID', $request->input('productID'))->exists()) {
             $cartItem = new cartstable;
             $cartItem->productID = $request->input('productID');
             $cartItem->productQty = $request->input('productQty');
             $cartItem->save();
-            return response()->json(['status' => 'Added to cart.']);
-        }
+            $newItem= products::where('id',$request->input('productID'))->get();
+            return response()->json(['status' => 'Added to cart.','newItem'=>$newItem]);
+       /* }
         else{
             return response()->json(['status' => 'Its already added to cart!']);
             
-        }
+        }*/
     }
     public function deleteCart(Request $request){
 
@@ -60,18 +61,6 @@ class CartController extends Controller
 
 
         return response()->json(['status' => 'Ordered successfully. Your order number is #'.$orderNumber]);
-
-
-    }
-
-    public function getData(Request $request){
-
-        $cart = cartstable::all();
-        dd($cart);
-
-        return response()->json(['cart' => $cart]);
-
-
 
 
     }

@@ -14,7 +14,11 @@
             <h6 class="m-0 font-weight-bold text-primary">@yield('title')
                 <span class="float-right">{{ $product->count() }} products found.</strong>
             </h6>
+        </div> @if(session('success'))
+        <div class="alert alert-success">
+          {{session('success')}}
         </div>
+      @endif  
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -43,10 +47,10 @@
                                     <a target="_blank" href="{{ route('single', [$products->id]) }}" title="Show"
                                         class="btn btn-sm btn-success"><i class="fa fa-eye"></i> </a>
 
-                                    <a href="" title="Edit" class="btn btn-sm btn-primary"><i
+                                    <a href="{{route('editProduct',$products->id)}}" title="Edit" class="btn btn-sm btn-primary"><i
                                             class="fa fa-pen"></i> </a>
 
-                                    <a href="" title="Delete" class="btn btn-sm btn-danger"><i
+                                    <a href="{{route('deleteProduct',$products->id)}}" title="Delete" class="btn btn-sm btn-danger"><i
                                             class="fa fa-times"></i> </a>
 
                                 </td>

@@ -2,7 +2,7 @@
 @section('index', 'active')
 
 @section('content')
-    @php $orderButton = false; @endphp
+    @php $orderButton = true; @endphp
     <div class="container mt-5 p-3 rounded cart">
         <div class="row no-gutters">
             <div class="col-md-8">
@@ -29,8 +29,10 @@
                                         class="font-weight-bold d-block">{{ $cartItem->products->name }}</span>
                                     @if ($cartItem->products->stock >= $cartItem->productQty)
                                         <span class="spec text-success">In Stock</span>
-                                        @php $orderButton = true; @endphp
-
+                                    @else
+                                        @php
+                                            $orderButton = false;
+                                        @endphp
                                     @endif
                                     @if ($cartItem->products->stock < $cartItem->productQty)
                                         <span class="spec text-danger">Out of Stock</span>
@@ -93,8 +95,9 @@
                         type="button"><span>${{ $subPrice }}</span><span>Checkout<i
                                 class="fa fa-long-arrow-right ml-1"></i></span></button>
                 @else
-                <button class="btn btn-danger btn-block d-flex justify-content-between mt-3"
-                        ><span>${{ $subPrice }}</span><span>You can't order.</span></button>
+                    <button
+                        class="btn btn-danger btn-block d-flex justify-content-between mt-3"><span>${{ $subPrice }}</span><span>You
+                            can't order.</span></button>
                 @endif
             </div>
         </div>
@@ -147,16 +150,6 @@
                     }
 
                 });
-                $.ajax({
-                    method: 'GET',
-                    url: "/cart/getData",
-                    success: function (response) {
-
-                    console.log(data)
-                        
-                    }
-                });
-                
             });
         });
     </script>
