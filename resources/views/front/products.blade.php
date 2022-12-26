@@ -28,7 +28,7 @@
                 <a href="{{route('single',$product->id)}}">
                     <div class="featured-item">
                         <input type="hidden" class="productID" value={{ $product->id }}>
-                        <img src="{{ asset('images') . '/' . $product->coverPhoto }}" alt=""><br><br>
+                        <img  style = "height: 334px;"src="{{ asset('images') . '/' . $product->coverPhoto }}" alt=""><br><br>
                         <h4 style="display:inline;">{{ $product->name }}</h4> <button type="button"
                             veri={{ $product->id }} class="btn btn-primary me-3 addToCart float-start"
                             style="margin-left: 70px;margin-top: 25px;">Add to Cart <i

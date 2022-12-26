@@ -44,7 +44,6 @@ Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 
 
 Route::prefix('admin')->middleware('isAdmin')->group(function(){
-
     Route::get('/panel',[AdminController::class,'index'])->name("admin");
     Route::get('/contacts',[AdminController::class,'showContacts'])->name('adminContacts');
     Route::get('/about',[AdminController::class,'showAbout'])->name('adminAbout');

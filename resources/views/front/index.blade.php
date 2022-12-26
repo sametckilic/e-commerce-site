@@ -10,10 +10,10 @@
         <div class="row">
           <div class="col-md-12">
             <div class="caption">
-              <h2>Ecommerce HTML Template</h2>
+              <h2>Lorem ipsum dolor sit amet.</h2>
               <div class="line-dec"></div>
-              <p>Pixie HTML Template can be converted into your desired CMS theme. Total <strong>5 pages</strong> included. You can use this Bootstrap v4.1.3 layout for any CMS. 
-              <br><br>Please tell your friends about <a rel="nofollow" href="https://www.facebook.com/tooplate/">Tooplate</a> free template site. Thank you. Photo credit goes to <a rel="nofollow" href="https://www.pexels.com">Pexels website</a>.</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, voluptatibus. Lorem ipsum dolor sit amet. 
+              <br><br>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non, consequuntur.</a> Lorem ipsum dolor sit amet.<a rel="nofollow" href="https://www.pexels.com">Lorem, ipsum.</a></p>
               <div class="main-button">
                 <a href="{{route('products')}}">Order Now!</a>
               </div>
@@ -40,7 +40,7 @@
                 
              <a href="{{route('single',$product->id)}}">
                 <div class="featured-item">
-                  <img src="{{asset('images/').'/'.$product->coverPhoto}}" alt="Item 1">
+                  <img src="{{asset('images/').'/'.$product->coverPhoto}}" style = "height: 240px;" alt="Item 1">
                   <h4>{{$product->name}}</h4>
                   <h6>${{$product->price}}</h6>
                 </div>
