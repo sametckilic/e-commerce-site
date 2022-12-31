@@ -49,24 +49,27 @@ class CartController extends Controller
     }
     public function order(Request $request){
 
-        $cartList = cartstable::all();
-        $orderNumber = random_int(1000000,9999999);
-        foreach($cartList as $cartItems){
-            $orders = new orders;
-            $orders->productID = $cartItems->productID;
-            $orders->orderNumber = $orderNumber;
-            $orders->productQty = $cartItems->productQty;
-            $qty = products::where('id',$cartItems->productID)->sum('stock');
-            products::where('id',$cartItems->productID)->update(['stock'=>($qty-$cartItems->productQty)]); 
-            $orders->address = $request->input('orderAddress');     
-            $orders->save();
-        }
-        foreach($cartList as $cartItems){
-            $cartItems->delete();
-        }
+        
 
 
-        return response()->json(['status' => 'Ordered successfully. Your order number is #'.$orderNumber]);
+        // $cartList = cartstable::all();
+        // $orderNumber = random_int(1000000,9999999);
+        // foreach($cartList as $cartItems){
+        //     $orders = new orders;
+        //     $orders->productID = $cartItems->productID;
+        //     $orders->orderNumber = $orderNumber;
+        //     $orders->productQty = $cartItems->productQty;
+        //     $qty = products::where('id',$cartItems->productID)->sum('stock');
+        //     products::where('id',$cartItems->productID)->update(['stock'=>($qty-$cartItems->productQty)]); 
+        //     $orders->address = $request->input('orderAddress');     
+        //     $orders->save();
+        // }
+        // foreach($cartList as $cartItems){
+        //     $cartItems->delete();
+        // }
+
+
+        // return response()->json(['status' => 'Ordered successfully. Your order number is #'.$orderNumber]);
 
 
     }

@@ -51,56 +51,38 @@
                     @endforeach
                 </div>
             </div>
-
             <div class="col-md-4">
+                <form method ="POST" action = {{route("order")}}>
+                    <div class="payment-info">
 
-                <div class="payment-info">
-                    <div class="d-flex justify-content-between align-items-center"><span>Card details</span></div><span
-                        class="type d-block mt-3 mb-1">Card type</span><label class="radio"> <input type="radio"
-                            name="card" value="payment" checked> <span><img width="30"
-                                src="https://img.icons8.com/color/48/000000/mastercard.png" /></span> </label>
-
-                    <label class="radio"> <input type="radio" name="card" value="payment"> <span><img width="30"
-                                src="https://img.icons8.com/officel/48/000000/visa.png" /></span>
-                    </label>
-
-                    <label class="radio"> <input type="radio" name="card" value="payment"> <span><img width="30"
-                                src="https://img.icons8.com/ultraviolet/48/000000/amex.png" /></span>
-                    </label>
-
-
-                    <label class="radio"> <input type="radio" name="card" value="payment"> <span><img width="30"
-                                src="https://img.icons8.com/officel/48/000000/paypal.png" /></span>
-                    </label>
-                    <div><label class="credit-card-label">Name on card</label><input type="text"
-                            class="form-control credit-inputs" placeholder="Name"></div>
-                    <div><label class="credit-card-label">Card number</label><input type="text"
-                            class="form-control credit-inputs" placeholder="0000 0000 0000 0000"></div>
-                    <div class="row">
-                        <div class="col-md-6"><label class="credit-card-label">Date</label><input type="text"
-                                class="form-control credit-inputs" placeholder="12/24"></div>
-                        <div class="col-md-6"><label class="credit-card-label">CVV</label><input type="text"
-                                class="form-control credit-inputs" placeholder="342"></div>
+                        <hr class="line">
+                        <div class="d-flex justify-content-between information mt-5">
+                            <span>Subtotal</span><span>${{ $subPrice }}</span>
+                        </div>
                     </div>
-                    <div><label class="credit-card-label orderAddress">Your Address</label><input id='orderAddress'
-                            type="text" name="orderAddress" class="form-control credit-inputs" placeholder="Address">
-                    </div>
-                    <hr class="line">
-                    <div class="d-flex justify-content-between information">
-                        <span>Subtotal</span><span>${{ $subPrice }}</span>
-                    </div>
-                </div>
-                @if ($orderButton)
-                    <button class="btn btn-primary btn-block d-flex justify-content-between mt-3 order"
-                        type="button"><span>${{ $subPrice }}</span><span>Checkout<i
-                                class="fa fa-long-arrow-right ml-1"></i></span></button>
-                @else
-                    <button
-                        class="btn btn-danger btn-block d-flex justify-content-between mt-3"><span>${{ $subPrice }}</span><span>You
-                            can't order.</span></button>
-                @endif
+                    @if ($orderButton)
+                        <button type = "submit" class="btn btn-primary btn-block d-flex justify-content-between mt-4 order"
+                            type="button"><span>${{ $subPrice }}</span><span>Pay with Credit Cart<i
+                                    class="fa fa-long-arrow-right ml-1"></i></span></button>
+                    @else
+                        <button type = "submit"
+                            class="btn btn-danger btn-block d-flex justify-content-between mt-5"><span>${{ $subPrice }}</span><span>You
+                                can't order.</span></button>
+                    @endif
+                    @if ($orderButton)
+                        <button type = "submit" class="btn btn-primary btn-block d-flex justify-content-between mt-4 order"
+                            type="button"><span>${{ $subPrice }}</span><span>Pay with Money Order<i
+                                    class="fa fa-long-arrow-right ml-1"></i></span></button>
+                    @else
+                        <button type = "submit"
+                            class="btn btn-danger btn-block d-flex justify-content-between mt-5"><span>${{ $subPrice }}</span><span>You
+                                can't order.</span></button>
+                    @endif
+
             </div>
+            </form>
         </div>
+
     </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -128,29 +110,7 @@
                     }
                 });
             });
-            $('.order').click(function(e) {
-                e.preventDefault();
 
-                var orderAddress = $('#orderAddress').val();
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-                $.ajax({
-                    method: "POST",
-                    url: "/cart/order",
-                    data: {
-                        'orderAddress': orderAddress
-                    },
-                    success: function(response) {
-                        alert(response.status);
-                        window.location = '/cart';
-
-                    }
-
-                });
-            });
         });
     </script>
 @endsection
