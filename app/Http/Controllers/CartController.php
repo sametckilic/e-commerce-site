@@ -52,11 +52,10 @@ class CartController extends Controller
 
 
         $paymentStrategyContext = new PaymentStrategyContext($request->button); 
+        $cart['cart'] = $this->cartRepo->all();
+        $cart["cartList"] = cartstable::all();
+        return view('front.'.$paymentStrategyContext->pay(),$cart);
 
-
-        dd($paymentStrategyContext->pay());
-
-        // $cartList = cartstable::all();
         // $orderNumber = random_int(1000000,9999999);
         // foreach($cartList as $cartItems){
         //     $orders = new orders;
