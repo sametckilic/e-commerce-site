@@ -5,12 +5,11 @@ namespace App\PaymentMethods;
 use App\PaymentMethods\PaymentMethod;
 
 
-class CreditCardStrategy implements PaymentMethod{
+class HavaleEftStrategy implements PaymentMethod{
 
     public function pay(): string{
 
-        return "creditcart";
+        return "moneyorder";
     }
-
 
 }

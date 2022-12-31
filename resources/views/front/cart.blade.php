@@ -52,7 +52,8 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <form method ="POST" action = {{route("order")}}>
+                <form method="POST" action={{ route('order') }}>
+                    @csrf
                     <div class="payment-info">
 
                         <hr class="line">
@@ -60,27 +61,19 @@
                             <span>Subtotal</span><span>${{ $subPrice }}</span>
                         </div>
                     </div>
-                    @if ($orderButton)
-                        <button type = "submit" class="btn btn-primary btn-block d-flex justify-content-between mt-4 order"
-                            type="button"><span>${{ $subPrice }}</span><span>Pay with Credit Cart<i
-                                    class="fa fa-long-arrow-right ml-1"></i></span></button>
-                    @else
-                        <button type = "submit"
-                            class="btn btn-danger btn-block d-flex justify-content-between mt-5"><span>${{ $subPrice }}</span><span>You
-                                can't order.</span></button>
-                    @endif
-                    @if ($orderButton)
-                        <button type = "submit" class="btn btn-primary btn-block d-flex justify-content-between mt-4 order"
-                            type="button"><span>${{ $subPrice }}</span><span>Pay with Money Order<i
-                                    class="fa fa-long-arrow-right ml-1"></i></span></button>
-                    @else
-                        <button type = "submit"
-                            class="btn btn-danger btn-block d-flex justify-content-between mt-5"><span>${{ $subPrice }}</span><span>You
-                                can't order.</span></button>
-                    @endif
 
+                    <button name = "button" type="submit" value = "creditcard" class="btn btn-primary btn-block d-flex justify-content-between mt-4 order"
+                        type="button"><span>${{ $subPrice }}</span><span>Pay with Credit Cart<i
+                                class="fa fa-long-arrow-right ml-1"></i></span></button>
+                </form>
+                <form method="POST" action={{ route('order') }}>
+                    @csrf
+                    <button name = "button" type="submit" value = "moneyorder" class="btn btn-primary btn-block d-flex justify-content-between mt-4 order"
+                        type="button"><span>${{ $subPrice }}</span><span>Pay with Money Order<i
+                                class="fa fa-long-arrow-right ml-1"></i></span></button>
+                </form>
             </div>
-            </form>
+
         </div>
 
     </div>

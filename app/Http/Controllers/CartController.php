@@ -6,6 +6,7 @@ use App\Models\cartstable;
 use App\Models\products;
 use App\Models\orders;
 use App\Repository\ICartRepo;
+use App\PaymentMethods\PaymentStrategyContext;
 
 
 
@@ -49,8 +50,11 @@ class CartController extends Controller
     }
     public function order(Request $request){
 
-        
 
+        $paymentStrategyContext = new PaymentStrategyContext($request->button); 
+
+
+        dd($paymentStrategyContext->pay());
 
         // $cartList = cartstable::all();
         // $orderNumber = random_int(1000000,9999999);
