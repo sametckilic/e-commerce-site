@@ -18,6 +18,7 @@
                         <tr>
                             <th>Order Number</th>
                             <th>Address</th>
+                            <th>Order Type</th>
                             <th>Ordered At</th>
                             <th>Processes</th>
                         </tr>
@@ -31,6 +32,7 @@
                             <tr>
                                 <td>{{ $order->orderNumber }}</td>
                                 <td>{{ $order->address }}</td>
+                                <td>{{ $order->orderType}}</td>
                                 <td>{{$order->created_at}}</td>
                                 <td>
                                     <a target="_blank" href="{{route('showOrderItems',$order->orderNumber)}}" title="Show" class="btn btn-sm btn-success"><i

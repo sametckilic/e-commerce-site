@@ -33,6 +33,9 @@ Route::get('/cart',[CartController::class,'showCart'])->name('showCart');
 Route::post('/add-to-cart',[CartController::class,'addToCart'])->name('addToCart');
 Route::post('/cart/delete',[CartController::class,'deleteCart'])->name('deleteCart');
 Route::post('cart/order',[CartController::class,'order'])->name('order');
+Route::post('cart/order/orderCC',[CartController::class,'orderCC'])->name('orderCC');
+Route::post('cart/order/moneyOrder',[CartController::class,'moneyOrder'])->name('moneyOrder');
+
 
 
 

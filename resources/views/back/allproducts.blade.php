@@ -14,7 +14,8 @@
             <h6 class="m-0 font-weight-bold text-primary">@yield('title')
                 <span class="float-right">{{ $product->count() }} products found.</strong>
             </h6>
-        </div> @if(session('success'))
+        </div> 
+        @if(session('success'))
         <div class="alert alert-success">
           {{session('success')}}
         </div>

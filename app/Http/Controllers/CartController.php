@@ -52,28 +52,57 @@ class CartController extends Controller
 
 
         $paymentStrategyContext = new PaymentStrategyContext($request->button); 
+        $cart['cartList'] = $this->cartRepo->all();
         $cart['cart'] = $this->cartRepo->all();
-        $cart["cartList"] = cartstable::all();
+
         return view('front.'.$paymentStrategyContext->pay(),$cart);
 
-        // $orderNumber = random_int(1000000,9999999);
-        // foreach($cartList as $cartItems){
-        //     $orders = new orders;
-        //     $orders->productID = $cartItems->productID;
-        //     $orders->orderNumber = $orderNumber;
-        //     $orders->productQty = $cartItems->productQty;
-        //     $qty = products::where('id',$cartItems->productID)->sum('stock');
-        //     products::where('id',$cartItems->productID)->update(['stock'=>($qty-$cartItems->productQty)]); 
-        //     $orders->address = $request->input('orderAddress');     
-        //     $orders->save();
-        // }
-        // foreach($cartList as $cartItems){
-        //     $cartItems->delete();
-        // }
 
+    }
 
-        // return response()->json(['status' => 'Ordered successfully. Your order number is #'.$orderNumber]);
+    public function moneyOrder(Request $request){
+        $cartList = $this->cartRepo->all();
+        
+         $orderNumber = random_int(1000000,9999999);
+        foreach($cartList as $cartItems){
+            $orders = new orders;
+            $orders->productID = $cartItems->productID;
+            $orders->orderNumber = $orderNumber;
+            $orders->productQty = $cartItems->productQty;
+            $orders->orderType = "Money Order";
+            $qty = products::where('id',$cartItems->productID)->sum('stock');
+            products::where('id',$cartItems->productID)->update(['stock'=>($qty-$cartItems->productQty)]); 
+            $orders->address = $request->input('orderAddress');     
+            $orders->save();
+        }
+        foreach($cartList as $cartItems){
+            $cartItems->delete();
+        }
+        
+        return redirect()->route('products')->with('alert', 'Ordered successfully. Your order number is #'.$orderNumber);
 
+    }
 
+    public function orderCC(Request $request){
+        $cartList = $this->cartRepo->all();
+        
+
+         $orderNumber = random_int(1000000,9999999);
+        foreach($cartList as $cartItems){
+            $orders = new orders;
+            $orders->productID = $cartItems->productID;
+            $orders->orderNumber = $orderNumber;
+            $orders->productQty = $cartItems->productQty;
+            $orders->orderType = "Credit Card";
+            $qty = products::where('id',$cartItems->productID)->sum('stock');
+            products::where('id',$cartItems->productID)->update(['stock'=>($qty-$cartItems->productQty)]); 
+            $orders->address = $request->input('orderAddress');     
+            $orders->save();
+        }
+        foreach($cartList as $cartItems){
+            $cartItems->delete();
+        }
+        
+        return redirect()->route('products')->with('alert', 'Ordered successfully. Your order number is #'.$orderNumber);
     }
 }

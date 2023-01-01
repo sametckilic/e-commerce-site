@@ -28,6 +28,7 @@
                             <tr>
                                 <td width = '80'><img src="{{asset('images').'/'.$orderItem->products->coverPhoto}}" width = '80' alt=""></td>
                                 <td>{{$orderItem->products->name}}</td>
+                                
                                 <td>{{$orderItem->productQty}}</td>
                                 <td>{{$orderItem->productQty*$orderItem->products->price}}</td>
                             </tr>

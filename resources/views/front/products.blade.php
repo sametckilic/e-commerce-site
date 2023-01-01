@@ -18,17 +18,25 @@
         </div>
     </div>
 </div>
-
+<div class="container">
+    @if (session('alert'))
+        <div class="alert alert-success">
+            {{ session('alert') }}
+        </div>
+    @endif
+</div>
 <div class="featured container no-gutter productData">
     <div class="row posts">
 
 
+
         @foreach ($products as $product)
             <div class="item col-md-4">
-                <a href="{{route('single',$product->id)}}">
+                <a href="{{ route('single', $product->id) }}">
                     <div class="featured-item">
                         <input type="hidden" class="productID" value={{ $product->id }}>
-                        <img  style = "height: 334px;"src="{{ asset('images') . '/' . $product->coverPhoto }}" alt=""><br><br>
+                        <img style="height: 334px;" src="{{ asset('images') . '/' . $product->coverPhoto }}"
+                            alt=""><br><br>
                         <h4 style="display:inline;">{{ $product->name }}</h4> <button type="button"
                             veri={{ $product->id }} class="btn btn-primary me-3 addToCart float-start"
                             style="margin-left: 70px;margin-top: 25px;">Add to Cart <i
@@ -74,7 +82,8 @@
                     console.log(id, photo, price, name)
 
                     $('.newItem').append('<a class="dropdown-item" href=/products/' + id +
-                        '><div class = "container"><img src="http://localhost:8000/images/' + photo +
+                        '><div class = "container"><img src="http://localhost:8000/images/' +
+                        photo +
                         '" alt="" width="40">' + name +
                         '</div>	&nbsp  Quantity: 1  	&nbsp Price:    $' + (price * 1) +
                         ' </a>');

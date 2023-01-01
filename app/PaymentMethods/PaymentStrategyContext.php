@@ -15,6 +15,7 @@ class PaymentStrategyContext{
         $this->strategy = match($paymentMethod){
             "creditcard" => new CreditCardStrategy(),
             "moneyorder" => new HavaleEftStrategy()
+
         };
     }
 

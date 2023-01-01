@@ -19,6 +19,7 @@ class Orders extends Migration
             $table->string('productID');
             $table->integer('productQty');
             $table->longText('address');
+            $table->string('orderType');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
